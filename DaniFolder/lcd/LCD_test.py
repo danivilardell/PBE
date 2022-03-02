@@ -1,10 +1,10 @@
-import drivers
+from lcd import drivers
 from time import sleep
 
 class Rfid:
 
-	def __init__(self, display):
-		self.display = display
+	def __init__(self):
+		self.display = drivers.Lcd()
 
 	def testLCD(self):
 		try:
@@ -26,8 +26,21 @@ class Rfid:
 			#Si algu prem ctrl+c es neteja el display
 			self.display.lcd_clear()
 			return
+			
+	def write(self, text):
+		try:
+			self.display.lcd_clear()
+			splitText = text.splitlines()
+
+			for i in range(min(len(splitText), 4)):
+				self.display.lcd_display_string(splitText[i],i + 1) #les mostrem per pantalla
+			return
+
+		except KeyboardInterrupt:
+			#Si algu prem ctrl+c es neteja el display
+			self.display.lcd_clear()
+			return
 
 if __name__ == "__main__":
-	display = drivers.Lcd()
-	rf = Rfid(display)
+	rf = Rfid()
 	rf.testLCD()
