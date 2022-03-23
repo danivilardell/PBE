@@ -3,7 +3,7 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-from lcd.LCD_test import Rfid
+from lcd.LCD import Rfid
 
 class MyWindow(Gtk.Window):
     def __init__(self):

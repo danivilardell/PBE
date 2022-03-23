@@ -1,5 +1,6 @@
 from lcd import drivers
 from time import sleep
+import sys
 
 class Rfid:
 
@@ -8,8 +9,11 @@ class Rfid:
 
 	def testLCD(self):
 		try:
+			self.display.lcd_backlight(1)
 			print("Enter sentences that you want to be displayed:\n")
 			i = 1
+			#1. Llegim i anem escrivint frase per frase
+			''' 
 			while i <= 4: #entrem fins a 4 frases
 				try:
 					line = input()
@@ -17,6 +21,12 @@ class Rfid:
 					break
 				self.display.lcd_display_string(line,i) #les mostrem per pantalla
 				i += 1
+			'''
+			#2. Llegim tot alhora
+			userInput = sys.stdin.readlines()
+			for i in range(1,min(5, len(userInput) + 1)):
+				self.display.lcd_display_string(userInput[i - 1].strip(),i)
+			
 			sleep(10) #Esperem 10 segons abans de borrar
 			#netegem el display abans d'acabar
 			self.display.lcd_clear()
