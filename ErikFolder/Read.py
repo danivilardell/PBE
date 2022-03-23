@@ -3,11 +3,14 @@
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
-reader = SimpleMFRC522()
+class Rfid:
 
-try:
-	id, text = reader.read()
-	print(id)
-	print(text)
-finally:
-	GPIO.cleanup()
+	reader = SimpleMFRC522()
+
+	try:
+		id, text = reader.read()
+		num = hex(id)
+		print(num.upper())
+		#print(text)
+	finally:
+		GPIO.cleanup()
