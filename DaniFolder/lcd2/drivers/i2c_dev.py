@@ -126,7 +126,7 @@ class Lcd:
     def lcd_write(self, cmd, mode=0):
         self.lcd_write_four_bits(mode | (cmd & 0xF0))
         self.lcd_write_four_bits(mode | ((cmd << 4) & 0xF0))
-    
+
     def lcd_display_char(self, charNum, line):
         if line == 1:
             self.lcd_write(0x80)
@@ -136,8 +136,8 @@ class Lcd:
             self.lcd_write(0x94)
         if line == 4:
             self.lcd_write(0xD4)
-        self.lcd_write(charNum, Rs)            
-            
+        self.lcd_write(charNum, Rs)
+
     # put string function
     def lcd_display_string(self, string, line):
         if line == 1:
@@ -151,7 +151,7 @@ class Lcd:
         for char in string:
             self.lcd_write(ord(char), Rs)
 
-    # put extended string function. Extended string may contain placeholder like {0xFF} for 
+    # put extended string function. Extended string may contain placeholder like {0xFF} for
     # displaying the particular symbol from the symbol table
     def lcd_display_extended_string(self, string, line):
         if line == 1:
@@ -190,14 +190,14 @@ class CustomCharacters:
     def __init__(self, lcd):
         self.lcd = lcd
         # Data for custom character #1. Code {0x00}.
-        self.char_1_data = ["11111",
+        self.char_1_data = ["00000",
+                            "01010",
+                            "01010",
+                            "00000",
                             "10001",
-                            "10001",
-                            "10001",
-                            "10001",
-                            "10001",
-                            "10001",
-                            "11111"]
+                            "01110",
+                            "00000",
+                            "00000"]
         # Data for custom character #2. Code {0x01}
         self.char_2_data = ["11111",
                             "10001",
@@ -262,9 +262,9 @@ class CustomCharacters:
                             "10001",
                             "11111"]
 
-    # load custom character data to CG RAM for later use in extended string. Data for  
-    # characters is hold in file custom_characters.txt in the same folder as i2c_dev.py 
-    # file. These custom characters can be used in printing of extended string with a 
+    # load custom character data to CG RAM for later use in extended string. Data for
+    # characters is hold in file custom_characters.txt in the same folder as i2c_dev.py
+    # file. These custom characters can be used in printing of extended string with a
     # placeholder with desired character codes: 1st - {0x00}, 2nd - {0x01}, 3rd - {0x02},
     # 4th - {0x03}, 5th - {0x04}, 6th - {0x05}, 7th - {0x06} and 8th - {0x07}.
     def load_custom_characters_data(self):
