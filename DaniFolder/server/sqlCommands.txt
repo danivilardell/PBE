@@ -1,0 +1,96 @@
+CREATE DATABASE PBEDB
+
+USE PBEDB
+
+CREATE TABLE students (
+Name varchar(255),
+UserId varchar(255)
+);
+
+INSERT INTO students
+VALUES ("Dani", "A2304D2");
+
+CREATE TABLE timetables (
+Day varchar(255),
+Hour time,
+Subject varchar(255),
+Room varchar(255)
+);
+
+INSERT INTO timetables
+VALUES ("Tue", "08:00:00", "TD", "A4-105");
+INSERT INTO timetables
+VALUES ("Wed", "11:00:00", "ICOM", "A1-102");
+INSERT INTO timetables
+VALUES ("Mon", "10:00:00", "AST", "A2-102");
+INSERT INTO timetables
+VALUES ("Mon", "8:00:00", "AST", "A2-102");
+
+
+CREATE TABLE tasks (
+Date date,
+Subject varchar(255),
+Name varchar(255)
+);
+
+INSERT INTO tasks
+VALUES ("2022-4-22", "TD", "Parcial");
+INSERT INTO tasks
+VALUES ("2022-2-21", "PSAVC", "Entregable");
+INSERT INTO tasks
+VALUES ("2022-2-25", "PBE", "Puzzle 1");
+INSERT INTO tasks
+VALUES ("2022-6-25", "PBE", "Examen final");
+
+CREATE TABLE marks (
+subject varchar(255),
+name varchar(255),
+mark double(3,1)
+);
+
+INSERT INTO marks
+VALUES ("PBE", "Control Lab", 8.2);
+INSERT INTO marks
+VALUES ("PSAVC", "Parcial", 2.6);
+INSERT INTO marks
+VALUES ("DSBM", "Microtask", 4.9);
+INSERT INTO marks
+VALUES ("DSBM", "Microtask 2", 5);
+
+###############################################
+
+SELECT
+     *
+FROM
+     timetables
+ORDER BY
+     CASE
+          WHEN Day = 'Mon' THEN 1
+          WHEN Day = 'Tue' THEN 2
+          WHEN Day = 'Wed' THEN 3
+          WHEN Day = 'Thu' THEN 4
+          WHEN Day = 'Fri' THEN 5
+          WHEN Day = 'Sat' THEN 6
+          WHEN Day = 'Sunday' THEN 7
+     END ASC, Hour ASC;
+
+ALTER TABLE timetables
+ADD UserId char(255);
+
+UPDATE timetables
+SET UserId = "A2304D2"
+WHERE UserId IS NULL;
+
+ALTER TABLE tasks
+ADD UserId char(255);
+
+UPDATE tasks
+SET UserId = "A2304D2"
+WHERE UserId IS NULL;
+
+ALTER TABLE marks
+ADD UserId char(255);
+
+UPDATE marks
+SET UserId = "A2304D2"
+WHERE UserId IS NULL;
