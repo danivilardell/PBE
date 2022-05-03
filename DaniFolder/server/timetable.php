@@ -44,7 +44,7 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
               " WHEN Day = 'Thu' THEN " . (3 - $weekDay + 7)%7 .
               " WHEN Day = 'Fri' THEN " . (4 - $weekDay + 7)%7 .
               " WHEN Day = 'Sat' THEN " . (5 - $weekDay + 7)%7 .
-              " WHEN Day = 'Sunday' THEN " . (6 - $weekDay)%7 . "
+              " WHEN Day = 'Sun' THEN " . (6 - $weekDay)%7 . "
          END ASC, Hour ASC";
     $result = $PBEDB->query($sql);
 
@@ -61,7 +61,7 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
     echo json_encode($timetables);
 
 } else if(isset($day)) { //Returns first class after day and hour specified
-    //localhost:9000/timetable.php?userId="A2304D2"&day=Tue&hour[gt]=08:00:00
+    //http://localhost:9000/timetable.php?userId="A2304D2"&day=Tue&hour[gt]=08:00:00
     $sql = "SELECT Day, Hour, Subject, Room FROM timetables WHERE UserId = $userId ORDER BY
          CASE
               WHEN Day = 'Mon' THEN " . (0 - dayToInt($day) + 7)%7 .
@@ -70,7 +70,7 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
               " WHEN Day = 'Thu' THEN " . (3 - dayToInt($day) + 7)%7 .
               " WHEN Day = 'Fri' THEN " . (4 - dayToInt($day) + 7)%7 .
               " WHEN Day = 'Sat' THEN " . (5 - dayToInt($day) + 7)%7 .
-              " WHEN Day = 'Sunday' THEN " . (6 - dayToInt($day))%7 . "
+              " WHEN Day = 'Sun' THEN " . (6 - dayToInt($day))%7 . "
          END ASC, Hour ASC";
     $result = $PBEDB->query($sql);
 
@@ -117,7 +117,7 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
               " WHEN Day = 'Thu' THEN " . (3 - $weekDay + 7)%7 .
               " WHEN Day = 'Fri' THEN " . (4 - $weekDay + 7)%7 .
               " WHEN Day = 'Sat' THEN " . (5 - $weekDay + 7)%7 .
-              " WHEN Day = 'Sunday' THEN " . (6 - $weekDay)%7 . "
+              " WHEN Day = 'Sun' THEN " . (6 - $weekDay)%7 . "
          END ASC, Hour ASC";
 
     $result = $PBEDB->query($sql);

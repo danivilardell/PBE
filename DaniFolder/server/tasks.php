@@ -20,7 +20,6 @@ $limit = $_GET['limit'];
 if(!isset($limit)) $limit = 1e8;
 
 if(isset($dategte) or isset($dategt)) {
-    //http://localhost:9000/tasks.php/?userId="A2304D2"&date=2022-02-22
     //http://localhost:9000/tasks.php/?userId="A2304D2"&date[gt]=2022-02-24&limit=2
 
     if(isset($dategte) and $dategte == "now") $dategte = date("Y-m-d");

@@ -17,6 +17,7 @@ $result = $PBEDB->query($sql);
 $index = 0;
 while($row = $result->fetch_assoc()) $index++;
 
+//http://localhost:9000/?userId="A2304D2"
 if($index == 0) echo json_encode("Id not found");
 else echo json_encode("Id found");
 
