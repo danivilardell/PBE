@@ -1,6 +1,6 @@
 import gi
 gi.require_version("Gtk","3.0")
-from Rfid import Rfid
+from lcd import Rfid
 import threading
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -16,7 +16,7 @@ class Finestra(Gtk.Window):
         context = Gtk.StyleContext()
         screen = Gdk.Screen.get_default()
         context.add_provider_for_screen(screen, css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-        self.primera_pantalla()
+        self.segona_pantalla()
         
     
     def primera_pantalla(self):

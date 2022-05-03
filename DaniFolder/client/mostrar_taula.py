@@ -1,5 +1,7 @@
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
 
-def mostrar_taula(self,taula):        
+def mostrar_taula(self, taula):        
 
         color1 ="#96d0ff" #blau fluix
         color2 ="#249dff" #blau fort
@@ -62,5 +64,11 @@ def mostrar_taula(self,taula):
                     columna.set_alignment(0.7)
                     columna.add_attribute(renderer, "background", 4)
                     self.treeview.append_column(columna)
+                
+                
         except IndexError as err:
             self.label_error_menu.set_text("Error")
+    
+
+taula = {"timetable": [{"Day":"Mon","Hour":"08:00:00","Subject":"AST","Room":"A2-102"},{"Day":"Mon","Hour":"10:00:00","Subject":"AST","Room":"A2-102"},{"Day":"Tue","Hour":"08:00:00","Subject":"TD","Room":"A4-105"},{"Day":"Wed","Hour":"11:00:00","Subject":"ICOM","Room":"A1-102"}]}
+mostrar_taula(taula)
