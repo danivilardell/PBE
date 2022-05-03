@@ -18,7 +18,7 @@ class MyWindow(Gtk.Window):
         self.entry = Gtk.Entry()
         self.entry.set_width_chars(120)
 
-        self.button1 = Gtk.Button(label="Write")
+        self.button1 = Gtk.Button(label="Run Query")
         self.button1.connect("clicked", self.on_button1_clicked)
         
         self.grid = Gtk.Grid()
@@ -27,12 +27,6 @@ class MyWindow(Gtk.Window):
         self.grid.attach_next_to(self.button1, self.entry, Gtk.PositionType.BOTTOM, 1, 1)
         
         self.add(self.grid)
-        
-    def getText(self, textview):
-        buffer = textview.get_buffer()
-        startIter, endIter = buffer.get_bounds()    
-        text = buffer.get_text(startIter, endIter, False) 
-        return text
 
     def on_button1_clicked(self, widget):
         #text = self.getText(self.textview)
@@ -57,7 +51,6 @@ class MyWindow(Gtk.Window):
         
         self.scrollable_treelist = Gtk.ScrolledWindow()
         self.scrollable_treelist.set_vexpand(True)
-        self.grid.attach_next_to(self.scrollable_treelist, self.button1, Gtk.PositionType.BOTTOM, 1, 1)
 
         try:            
 
@@ -86,7 +79,7 @@ class MyWindow(Gtk.Window):
                     renderer.set_property("xalign",0.5)
 
                     columna = Gtk.TreeViewColumn(titols,renderer,text=i)
-                    columna.set_alignment(0.7)
+                    columna.set_alignment(0.5)
                     columna.add_attribute(renderer, "background", 3)
                     self.treeview.append_column(columna)
                 
@@ -122,7 +115,7 @@ class MyWindow(Gtk.Window):
                     renderer.set_property("xalign",0.5)                                        
 
                     columna = Gtk.TreeViewColumn(titols,renderer,text=i)                    
-                    columna.set_alignment(0.7)
+                    columna.set_alignment(0.5)
                     columna.add_attribute(renderer, "background", 4)
                     self.treeview.append_column(columna)
                 
@@ -139,7 +132,6 @@ class MyWindow(Gtk.Window):
             self.label_error_menu.set_text("Error")
 
     def makeRequest(self, url):
-        print(requests.post(url).text.encode('utf-8'))
         return json.loads(requests.post(url).text.encode('utf-8'))
 
 win = MyWindow()

@@ -75,25 +75,28 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
     $result = $PBEDB->query($sql);
 
     $found = false;
-
+    $timetable = array();
     while($row = $result->fetch_assoc()) {
         //echo "Day: " . $row["Day"]. "<br>Hour: " . $row["Hour"]. "<br>Subject " . $row["Subject"]. "<br>Room " . $row["Room"]. "<br>";
         if($row["Day"] == $day) {
             if(isset($hour)) {
                 if($row["Hour"] > $hour) {
-                    echo json_encode($row);
+                    $timetable[] = $row;
+	                echo json_encode($timetable);
                     $found = true;
                     break;
                 }
             }else if(isset($hourgte)) {
                 if($row["Hour"] >= $hour) {
-                    echo json_encode($row);
+                    $timetable[] = $row;
+	                echo json_encode($timetable);
                     $found = true;
                     break;
                 }
             }
         }else {
-            echo json_encode($row);
+            $timetable[] = $row;
+            echo json_encode($timetable);
             $found = true;
             break;
         }
@@ -101,7 +104,9 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
     }
 
     if($found == false) {
-        echo json_encode($PBEDB->query($sql)->fetch_assoc());
+        $row = $PBEDB->query($sql)->fetch_assoc();
+        $timetable[] = $row;
+        echo json_encode($timetable);
     }
 
 } else {
@@ -135,3 +140,4 @@ if(isset($limit)) { //Retorna un nombre total limit de classes
 }
 
 ?>
+
