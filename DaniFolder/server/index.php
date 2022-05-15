@@ -1,4 +1,3 @@
-
 <?php
 
 $servername = "localhost";
@@ -12,13 +11,15 @@ $userId = $_GET["userId"];
 
 $sql = "SELECT  Name, UserId FROM students WHERE UserId = $userId";
 
-$result = $PBEDB->query($sql);
+if(isset($userId)) {
+    $result = $PBEDB->query($sql);
 
-$index = 0;
-while($row = $result->fetch_assoc()) $index++;
+    $index = 0;
+    while($row = $result->fetch_assoc()) $index++;
 
-//http://localhost:9000/?userId="A2304D2"
-if($index == 0) echo json_encode("Id not found");
-else echo json_encode("Id found");
+    //http://localhost:9000/?userId="A2304D2"
+    if($index == 0) echo json_encode(array("res" => "Id not found"));
+    else echo json_encode(array("res" => "Id found"));
+}
 
 ?>

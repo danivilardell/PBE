@@ -20,7 +20,7 @@ else $sql = "SELECT  subject, name, mark FROM marks WHERE UserId = $userId ORDER
 $result = $PBEDB->query($sql);
 
 if(isset($marklt) or isset($marklet)) {
-    //http://localhost:9000/marks.php/?userId="A2304D2"&mark[let]=5&subject="DSBM"
+    //http://localhost:9000/marks.php?userId="A2304D2"&mark[let]=5&subject="DSBM"
     $tasks = array();
 
     // output data of each row
@@ -30,7 +30,7 @@ if(isset($marklt) or isset($marklet)) {
     }
     echo json_encode($tasks);
 } else {
-    //http://localhost:9000/marks.php/?userId="A2304D2"
+    //http://localhost:9000/marks.php?userId="A2304D2"
     $tasks = array();
 
     // output data of each row
