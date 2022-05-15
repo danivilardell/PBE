@@ -1,24 +1,51 @@
-let table = document.createElement('table');
-let thead = document.createElement('thead');
-let tbody = document.createElement('tbody');
 
-table.appendChild(thead);
-table.appendChild(tbody);
+testTable = [{"Day":"Tue","Hour":"08:00:00","Subject":"TD","Room":"A4-105"},{"Day":"Mon","Hour":"10:00:00","Subject":"AST","Room":"A2-102"},{"Day":"Wed","Hour":"11:00:00","Subject":"ICOM","Room":"A1-102"},{"Day":"Mon","Hour":"08:00:00","Subject":"AST","Room":"A2-102"}];
 
-// Adding the entire table to the body tag
-document.getElementById('body').appendChild(table);
+function createTable(tableData) {
+    if(tableData.length == 0) return;
 
-for(let i = 0; i < tableData.) {
-    let row_1 = document.createElement('tr');
-    let heading_1 = document.createElement('th');
-    heading_1.innerHTML = "Sr. No.";
-    let heading_2 = document.createElement('th');
-    heading_2.innerHTML = "Name";
-    let heading_3 = document.createElement('th');
-    heading_3.innerHTML = "Company";
+    let table = document.getElementById('table');
+    table.innerHTML = "";
 
-    row_1.appendChild(heading_1);
-    row_1.appendChild(heading_2);
-    row_1.appendChild(heading_3);
-    thead.appendChild(row_1);
+    let thead = document.createElement('thead');
+    let tbody = document.createElement('tbody');
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+
+    console.log(tableData[0])
+    let row = document.createElement('tr');
+    for(const [key, value] of Object.entries(tableData[0])) {
+        let tableValue = document.createElement('th');
+        tableValue.innerHTML = key;
+        row.appendChild(tableValue);
+    }
+
+    thead.appendChild(row);
+
+    for(let i = 0; i < tableData.length; i++) {
+        row = document.createElement('tr');
+
+        for(const [key, value] of Object.entries(tableData[i])) {
+            let tableValue = document.createElement('td');
+            tableValue.innerHTML = value;
+            row.appendChild(tableValue);
+        }
+
+        thead.appendChild(row);
+    }
 }
+
+function handleQuery() {
+    let text = document.getElementById('queryText').value;
+    makeQuery(text)
+}
+
+function makeQuery(query) {
+    //AQUI S'HA DE FER LA QUERY
+    console.log(query);
+    createTable(testTable);
+}
+
+let queryButton = document.getElementById('queryButton');
+queryButton.addEventListener("click", handleQuery);
