@@ -1,6 +1,20 @@
 
 testTable = [{"Day":"Tue","Hour":"08:00:00","Subject":"TD","Room":"A4-105"},{"Day":"Mon","Hour":"10:00:00","Subject":"AST","Room":"A2-102"},{"Day":"Wed","Hour":"11:00:00","Subject":"ICOM","Room":"A1-102"},{"Day":"Mon","Hour":"08:00:00","Subject":"AST","Room":"A2-102"}];
 
+$(document).ready(function () {
+ $('#queryButton').click(function() {
+
+     let query = document.getElementById('queryText').value;
+     $.get("http://192.168.3.2/" + query, function(data) {
+            data = JSON.parse(data);
+            console.log(data);
+            createTable(data);
+         }
+     );
+ });
+
+});
+
 function createTable(tableData) {
     if(tableData.length == 0) return;
 
@@ -35,17 +49,3 @@ function createTable(tableData) {
         thead.appendChild(row);
     }
 }
-
-function handleQuery() {
-    let text = document.getElementById('queryText').value;
-    makeQuery(text)
-}
-
-function makeQuery(query) {
-    //AQUI S'HA DE FER LA QUERY
-    console.log(query);
-    createTable(testTable);
-}
-
-let queryButton = document.getElementById('queryButton');
-queryButton.addEventListener("click", handleQuery);
