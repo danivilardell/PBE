@@ -1,4 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>PBE web-client</title>
+</head>
+
 <?php
+
+echo '
+<body id="body" style="background-color:#e6e6e6">
+    <center>
+        <h1>PBE Web-Client</h1>
+        <input type="text" id="queryText" placeholder="Insert Query">
+        <br><br>
+        <button id="queryButton" class="button-9">MAKE QUERY</button>
+        <br><br><br><br>
+        <div id="table">
+
+        </div>
+    </center>
+</body>
+<script src="main.js"></script>
+';
 
 $servername = "localhost";
 $username = "root";
@@ -23,3 +50,4 @@ if(isset($userId)) {
 }
 
 ?>
+</html>
