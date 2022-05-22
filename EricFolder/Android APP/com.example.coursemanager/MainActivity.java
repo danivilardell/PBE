@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validateUser();
+                login();
             }
         });
     }
 
-    private void validateUser(){
+    private void login(){
 		String url = "http://"+ this.host.getText().toString()+":8000/index.php/?userId=%27"+this.password.getText().toString()+"%27";
 
         DataRequest dataRequest=new DataRequest(MainActivity.this, url);
