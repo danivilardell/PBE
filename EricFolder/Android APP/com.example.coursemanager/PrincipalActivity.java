@@ -3,6 +3,7 @@ package com.example.coursemanager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -73,6 +74,7 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void creartaula(JSONArray jsonArray, String idtaula) {
         try {
             View layout = null;
+
             switch (idtaula) {
                 case "marks":
                     layout = LayoutInflater.from(this).inflate(R.layout.marksrow, null, false);
@@ -126,7 +128,7 @@ public class PrincipalActivity extends AppCompatActivity {
                     taula.addView(layout);
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-
+                        Log.e("arriba","aqui");
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         layout = LayoutInflater.from(this).inflate(R.layout.tasksrow, null, false);
                         TextView data2 = layout.findViewById(R.id.data);
@@ -138,9 +140,9 @@ public class PrincipalActivity extends AppCompatActivity {
                             layout.setBackgroundColor(getResources().getColor(R.color.fosc));
                         }
 
-                        data2.setText(jsonObject.getString("date"));
-                        assig2.setText(jsonObject.getString("subject"));
-                        nom2.setText(jsonObject.getString("name"));
+                        data2.setText(jsonObject.getString("Date"));
+                        assig2.setText(jsonObject.getString("Subject"));
+                        nom2.setText(jsonObject.getString("Name"));
 
                         taula.addView(layout);
                     }
@@ -178,10 +180,10 @@ public class PrincipalActivity extends AppCompatActivity {
                         } else {
                             layout.setBackgroundColor(getResources().getColor(R.color.fosc));
                         }
-                        dia2.setText(jsonObject.getString("day"));
-                        hora2.setText(jsonObject.getString("hour"));
-                        assig3.setText(jsonObject.getString("subject"));
-                        clase2.setText(jsonObject.getString("room"));
+                        dia2.setText(jsonObject.getString("Day"));
+                        hora2.setText(jsonObject.getString("Hour"));
+                        assig3.setText(jsonObject.getString("Subject"));
+                        clase2.setText(jsonObject.getString("Room"));
 
                         taula.addView(layout);
                     }

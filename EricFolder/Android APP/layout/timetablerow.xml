@@ -7,28 +7,28 @@
     <TextView
         android:id="@+id/dia"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/hora"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/assig"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/classe"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView" />
 </TableRow>

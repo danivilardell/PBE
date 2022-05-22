@@ -35,13 +35,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validateUser(){
-        DataRequest dataRequest=new DataRequest(MainActivity.this, this.host.getText().toString());
-        dataRequest.response("http://"+ this.host.getText().toString()+":8000/index.php/?userId=%27"+this.password.getText().toString()+"%27", new DataRequest.VolleyResponseListener() {
+		String url = "http://"+ this.host.getText().toString()+":8000/index.php/?userId=%27"+this.password.getText().toString()+"%27";
 
-            @Override
-            public void onError(String message) {
-                Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
+        DataRequest dataRequest=new DataRequest(MainActivity.this, url);
+        dataRequest.response(url, new DataRequest.VolleyResponseListener() {
 
             @Override
             public void onResponse(JSONArray jsonObjectsArray) throws JSONException {
@@ -52,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+			@Override
+            public void onError(String message) {
+                Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 
